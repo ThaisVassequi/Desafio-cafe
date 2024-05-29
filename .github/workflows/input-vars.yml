@@ -38,11 +38,12 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  teste-postgres-sql:
-    if: ${{ github.event.inputs.nuvem == 'Postgres' }} 
-    uses: ./.github/workflows/postgres.yml
+
+  teste-sqlserver-sql:
+    if: ${{ github.event.inputs.nuvem == 'SqlServer' }} 
+    uses: ./.github/workflows/sqlserver.yml
     with:
-      config-path: "Postgres"
+      config-path: "SqlServer"
       repo-token: "hello"
     secrets:
       SSH_SECRET_KEY: ${{ secrets.SSH_SECRET_KEY }}
@@ -52,6 +53,24 @@ jobs:
     uses: ./.github/workflows/oracle.yml
     with:
       config-path: "Oracle"
+      repo-token: "hello"
+    secrets:
+      SSH_SECRET_KEY: ${{ secrets.SSH_SECRET_KEY }}
+
+  teste-postgres-sql:
+    if: ${{ github.event.inputs.nuvem == 'Postgres' }} 
+    uses: ./.github/workflows/postgres.yml
+    with:
+      config-path: "Postgres"
+      repo-token: "hello"
+    secrets:
+      SSH_SECRET_KEY: ${{ secrets.SSH_SECRET_KEY }}
+
+  teste-mariadb-sql:
+    if: ${{ github.event.inputs.nuvem == 'MariaDB' }} 
+    uses: ./.github/workflows/mariadb.yml
+    with:
+      config-path: "MariaDB"
       repo-token: "hello"
     secrets:
       SSH_SECRET_KEY: ${{ secrets.SSH_SECRET_KEY }}
